@@ -1,0 +1,20 @@
+.home-header {
+   background-color: #555;
+   background-image:
+      linear-gradient(62deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+      url('../img/home-header.webp');
+   background-size: cover;
+   background-position: center;
+   height: 80vh;
+}
+
+.feature-icon {
+   width: 4rem;
+   height: 4rem;
+   border-radius: .75rem;
+}
+
+.feature-icon-small {
+   width: 3rem;
+   height: 3rem;
+}

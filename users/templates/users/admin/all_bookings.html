@@ -1,0 +1,101 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Bookings ({{ request.user.username }}) {% endblock title %}
+{% block content %}
+
+
+<div class="container my-5">
+   <h2 class="font-semibold">Bookings</h2>
+
+
+   <div class="mt-5">
+      <div class="table-responsive">
+         <table class="table my-shadow border rounded-lg">
+            <thead class="table-light my-shadow font-inter">
+               <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Guest</th>
+                  <th scope="col">Booking date</th>
+                  <th scope="col">Check-in</th>
+                  <th scope="col">Check-out</th>                                    
+                  <th scope="col">Status</th>
+                  <th scope="col" class="text-end">Action</th>
+               </tr>
+            </thead>
+            <tbody class="table-group-divider">
+
+               {% for booking in all_bookings %}
+                  
+               <tr>
+                  <th scope="row">
+                     {{forloop.counter}}
+                  </th>
+                  <td class="font-medium">
+                     {{booking.user.get_full_name}}
+                  </td>
+                  <td>
+                     {{booking.booking_date|date:'F j, Y'}}
+                  </td>
+                  <td>
+                     {{booking.start_date}}
+                  </td>
+                  <td>
+                     {{booking.end_date}}
+                  </td>
+                  <td>
+                     {% if booking.is_active and not booking.is_confirmed %}
+                        <span class="badge text-bg-warning">Pending</span>
+                     {% elif booking.is_cancelled %}
+                        <span class="badge text-bg-danger">Cancelled</span>
+                     {% elif booking.is_confirmed %}
+                        <span class="badge text-bg-success">Confirmed</span>
+                     {% elif booking.is_completed %}
+                        <span class="badge text-bg-secondary">Completed</span>
+                     {% endif %}
+                  </td>                  
+
+                  <td class="text-end">
+
+                     {% if not booking.is_completed %}
+
+                        {% if not booking.is_cancelled %}
+                        
+                           {% if not booking.is_confirmed %}
+                           
+                           <a href="{% url 'users:admin_confirm_booking' booking.id %}" class="btn btn-success-soft"
+                              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .7rem;">
+                              Confirm Booking
+                           </a>
+                           
+                           {% endif %}
+                           
+                           <a href="{% url 'users:admin_cancel_booking' booking.id %}" class="btn btn-danger-soft"
+                              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .7rem;">
+                              Cancel Booking
+                           </a>
+                           
+                           {% if booking.is_confirmed %}
+                           
+                           <a href="{% url 'users:admin_complete_booking' booking.id %}" class="btn btn-secondary-soft"
+                              style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .7rem;">
+                              Complete Booking
+                           </a>
+                           {% endif %}
+                        {% endif %}
+                        
+                     {% endif %}
+
+                  </td>
+               </tr>
+               
+               {% endfor %}
+
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+
+</div>
+
+{% endblock content %}

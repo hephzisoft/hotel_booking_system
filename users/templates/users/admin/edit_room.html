@@ -1,0 +1,136 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Edit Room ({{ request.user.username }}) {% endblock title %}
+{% block content %}
+
+<div class="col-11 col-md-10 col-lg-8 col-xl-6 mx-auto my-5 border my-shadow-lg p-4">
+   <div class="mb-4">
+      <h1 class="m-0 p-0 font-semibold">
+         Edit Room: {{room.name}}
+      </h1>
+      <small class="m-0 p-0">Edit room details</small>
+   </div>
+
+   <form class="" action="" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <fieldset class="">
+         <label for="username" class="form-label font-inter text-md">
+            Name <span class="text-danger font-bold">*</span>
+         </label>
+
+         {{edit_room_form.name}}
+      </fieldset>
+
+      <fieldset class="">
+         <label for="username" class="form-label font-inter text-md">
+            Description <span class="text-danger font-bold">*</span>
+         </label>
+
+         {{edit_room_form.description}}
+      </fieldset>
+
+      <div class="row row-cols-1 row-cols-md-2">
+         <fieldset class="">
+            <label for="username" class="form-label font-inter text-md d-block">
+               Room Image 1 <span class="text-danger font-bold">*</span>
+            </label>
+
+            {% if room.room_image_1 %}
+               <small class="text-xs">
+                  Currently
+                  <a href="{{room.room_image_1.url}}" class="text-decoration-none">
+                     Room Image 1
+                  </a>
+               </small>
+            {% endif %}
+
+            {{edit_room_form.room_image_1}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="email" class="form-label font-inter text-md">
+               Room Image 2
+            </label>
+
+            {% if room.room_image_2 %}
+               <small class="text-xs">
+                  Currently
+                  <a href="{{room.room_image_2.url}}" class="text-decoration-none">
+                     Room Image 2
+                  </a>
+               </small>
+            {% endif %}
+
+            {{edit_room_form.room_image_2}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="first_name" class="form-label font-inter text-md d-block">
+               Room Image 3
+            </label>
+
+            {% if room.room_image_3 %}
+               <small class="text-xs">
+                  Currently
+                  <a href="{{room.room_image_3.url}}" class="text-decoration-none">
+                     Room Image 3
+                  </a>
+               </small>
+            {% endif %}
+
+            {{edit_room_form.room_image_3}}
+         </fieldset>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-2 gy-3 mb-4">
+         <fieldset class="">
+            <label for="username" class="form-label font-inter text-md">
+               Hotel <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_room_form.hotel}}
+
+            <small class="text-sm">
+               Didn't find the hotel?
+               <a href="{% url 'users:add_hotel' %}" class="link-primary text-decoration-none">Add hotel</a>
+            </small>
+         </fieldset>
+
+         <fieldset class="">
+            <label for="email" class="form-label font-inter text-md">
+               Price ($) <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_room_form.price}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="username" class="form-label font-inter text-md">
+               Room Options <span class="text-danger font-bold">*</span>
+            </label>
+         
+            {{edit_room_form.room_options}}
+         
+         </fieldset>
+         
+         <fieldset class="">
+            <label for="username" class="form-label font-inter text-md">
+               Is Booked <span class="text-danger font-bold">*</span>
+            </label>
+         
+            {{edit_room_form.is_booked}}
+         
+         </fieldset>
+
+      </div>
+
+      
+
+      <div class="d-flex justify-content-end">
+         <button type="submit" class="btn btn-darkblue text-md">Save changes</button>
+      </div>
+   </form>
+</div>
+
+{% endblock content %}

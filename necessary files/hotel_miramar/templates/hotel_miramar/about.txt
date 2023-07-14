@@ -1,0 +1,92 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} About {% endblock title %}
+
+{% block content %}
+
+<header class="page-hero d-flex flex-column align-items-center justify-content-center">
+   <h1 class="text-white font-extrabold text-uppercase display-4">
+      About Us
+   </h1>
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+         <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-decoration-none" style="color: rgba(255, 255, 255, 0.7)">Home</a>
+         </li>
+         <li class="breadcrumb-item active text-white" aria-current="page">About</li>
+      </ol>
+   </nav>
+</header>
+
+<br><br><br><br><br>
+
+
+<div class="container px-4 py-5">
+   <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-12 col-sm-12 col-lg-6 ">
+         <img src="{% static 'img/about-img.jpg' %}" class="d-block mx-lg-auto img-fluid rounded-lg"
+            alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+         <h1 class="display-6 fw-bold lh-1 mb-3 text-black">
+            About Us <br>
+         </h1>
+         <p class="text-dark">
+            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the
+            blind texts.
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+         </p>
+         <p class="text-dark">
+            A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
+            paradisematic
+            country, in which roasted parts of sentences fly into your mouth.
+         </p>
+
+         <div class="d-grid w-50 mt-4">
+            <a class="btn btn-darkblue font-medium" href="{% url 'rooms' %}">
+               Browse our rooms
+            </a>
+         </div>
+      </div>
+   </div>
+</div>
+
+<br><br><br><br><br>
+
+<div class="container">
+   <h1 class="text-center font-bold mb-5">Our Team</h1>
+   <div class="row text-center gy-4">
+      <div class="col-6 col-lg-3">
+         <img src="{% static 'img/avatar.jpg' %}" class="img-fluid rounded-xl" width="160" height="160" alt="Team Avatar">
+
+         <h4 class="font-bold mt-3">
+            Larry Lawson
+         </h4>
+      </div>
+      <div class="col-6 col-lg-3">
+         <img src="{% static 'img/avatar.jpg' %}" class="img-fluid rounded-xl" width="160" height="160" alt="Team Avatar">
+
+         <h4 class="font-bold mt-3">
+            Louis Ferguson
+         </h4>
+      </div>
+      <div class="col-6 col-lg-3">
+         <img src="{% static 'img/avatar.jpg' %}" class="img-fluid rounded-xl" width="160" height="160" alt="Team Avatar">
+
+         <h4 class="font-bold mt-3">
+            Louis Crawford
+         </h4>
+      </div>
+      <div class="col-6 col-lg-3">
+         <img src="{% static 'img/avatar.jpg' %}" class="img-fluid rounded-xl" width="160" height="160" alt="Team Avatar">
+
+         <h4 class="font-bold mt-3">
+            Frances Guerrero
+         </h4>
+      </div>
+   </div>
+</div>
+
+<br><br><br><br><br>
+
+{% endblock content %}

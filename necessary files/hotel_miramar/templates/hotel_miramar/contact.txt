@@ -1,0 +1,65 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Contact {% endblock title %}
+
+{% block content %}
+
+<header class="page-hero d-flex flex-column align-items-center justify-content-center">
+   <h1 class="text-white font-extrabold text-uppercase display-4">
+      Contact Us
+   </h1>
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+         <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-decoration-none" style="color: rgba(255, 255, 255, 0.7)">Home</a>
+         </li>
+         <li class="breadcrumb-item active text-white" aria-current="page">Contact</li>
+      </ol>
+   </nav>
+</header>
+
+<br><br><br><br><br><br><br>
+
+<div class="container">
+   <div class="row featurette align-items-center justify-content-between">
+      <div class="col-md-5">
+         <h2 class="font-bold display-5 mb-4">
+            Have Any Question?
+         </h2>
+
+         <form action="{% url 'contact' %}" class="font-inter" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+               <label for="name" class="form-label">
+                  Your name *
+               </label>
+               <input type="text" class="form-control" id="name" name="name" placeholder="" required>
+            </div>
+            <div class="mb-3">
+               <label for="email" class="form-label">
+                  Email address *
+               </label>
+               <input type="email" class="form-control" id="email" name="email" placeholder="" required>
+            </div>
+            <div class="mb-3">
+               <label for="message" class="form-label">
+                  Message *
+               </label>
+               <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-darkblue text-md mb-3">Send Message</button>
+         </form>
+      </div>
+
+      <div class="col-md-5 mt-4 mt-md-0">         
+
+         <img src="{% static 'img/contact-image.jpg' %}" class="img-fluid rounded-xl" alt="Contact Image">
+
+      </div>
+   </div>
+</div>
+
+<br><br><br><br><br>
+
+{% endblock content %}

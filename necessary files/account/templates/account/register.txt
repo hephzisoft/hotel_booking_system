@@ -1,0 +1,48 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Sign Up {% endblock title %}
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<main class=" d-flex align-items-center justify-content-center" style="height: 90vh;">
+   <form class="col-3 mx-auto gap-3 d-flex flex-column" method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+
+      <img class="mb-4 mx-auto" src="{% static 'img/hotel.png' %}" alt="" width="60" height="60">
+
+      <h3 class="mb-3 font-bold text-center">
+         Create new account
+      </h3>
+
+      <div class="form-floating">
+         <input type="text" class="form-control" id="username" name="username" placeholder="John Doe">
+         <label for="username" class="font-inter">Username</label>
+      </div>
+
+      <div class="form-floating">
+         <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+         <label for="email"class="font-inter">Email address</label>
+      </div>
+
+      <div class="form-floating">
+         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+         <label for="password" class="font-inter">Password</label>
+      </div>
+
+      <div class="form-floating">
+         <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Password">
+         <label for="confirm_password" class="font-inter">Confirm Password</label>
+      </div>
+
+      <button class="w-100 btn btn-darkblue font-medium" type="submit">Sign up</button>
+
+      <p class="text-center">
+         Already a member?          
+         <a href="{% url 'login' %}" class="link-primary text-decoration-none">Log in</a>
+      </p>
+   </form>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,96 @@
+{% if messages %}
+{% for message in messages %}
+<div class="position-fixed bottom-0 end-0 p-3 toast-container" style="z-index: 11">
+   {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}  
+   <div class="toast show fade border border-danger border-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body font-inter">
+         <p class="m-0 p-0 font-medium">
+            {{ message }}
+         </p>
+         <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle me-1" width="24"
+                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#fff" fill="#DC3545" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+               </svg>
+               <p class="font-semibold text-danger m-0 p-0 text-md">Error</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+         </div>
+      </div>
+   </div>
+   {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}   
+   <div class="toast show fade border border-primary border-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body font-inter">
+         <p class="m-0 p-0 font-medium">
+            {{ message }}
+         </p>
+         <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle me-1" width="24"
+                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#fff" fill="#0D6EFD" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+               </svg>
+               <p class="font-semibold text-primary m-0 p-0 text-md">Info</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+         </div>
+      </div>
+   </div>
+   {% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+   <div class="toast show fade border border-success border-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body font-inter">
+         <p class="m-0 p-0 font-medium">
+            {{ message }}
+         </p>
+         <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle me-1" width="24"
+                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#fff" fill="#198754" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+               </svg>
+               <p class="font-semibold text-success m-0 p-0 text-md">Success</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+         </div>
+      </div>
+   </div>
+   {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+   <div class="toast show fade border border-amber border-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body font-inter">
+         <p class="m-0 p-0 font-medium">
+            {{ message }}
+         </p>
+         <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle me-1" width="24"
+                  height="24" viewBox="0 0 24 24" stroke-width="2" stroke="#f59e0b" fill="none" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M12 9v2m0 4v.01"></path>
+                  <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
+                  </path>
+               </svg>
+               <p class="font-semibold text-amber m-0 p-0 text-md">Warning</p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+         </div>
+      </div>
+   </div>
+   {% endif %}
+
+</div>
+{% endfor %}
+{% endif %}

@@ -1,0 +1,87 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Rooms {% endblock title %}
+{% block content %}
+
+<header class="page-hero d-flex flex-column align-items-center justify-content-center">
+   <h1 class="text-white font-extrabold text-uppercase display-4">
+      Search Results
+   </h1>
+   <nav aria-label="breadcrumb">
+      <ol class="breadcrumb ">
+         <li class="breadcrumb-item">
+            <a href="{% url 'home' %}" class="text-decoration-none" style="color: rgba(255, 255, 255, 0.7)">Home</a>
+         </li>
+         <li class="breadcrumb-item active text-white" aria-current="page">Search results</li>
+      </ol>
+   </nav>
+</header>
+
+<br><br><br><br><br>
+
+<div class="container d-flex flex-column gap-4">
+
+   {% if rooms %}
+
+   {% for room in rooms %}
+   
+   <div class="col-md-11 col-lg-8 bg-light my-shadow mx-auto p-2 border rounded-xl">
+      <div class="row gx-3">
+         <div class="col-md-5">
+            <img src="{{room.room_image_1.url}}" alt="Room Image" class="img-fluid rounded-xl w-100 room-image-list">
+         </div>
+         <div class="col">
+            <div class="p-2 py-3 h-100 d-flex flex-column justify-content-between">
+               <div class="">
+                  <h3 class="font-bold">
+                     <a href="{% url 'room_details' room.slug %}" class="link-darkblue text-decoration-none">
+                        {{room.name}}
+                     </a>
+                  </h3>
+   
+                  <p class="text-sm text-black-50 d-inline-flex align-items-center gap-1 font-medium">
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" width="18" height="18">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                           d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                     </svg>
+                     {{room.hotel.address}} - {{room.hotel.city}}
+                  </p>
+   
+                  <ul class="nav nav-divider text-secondary align-items-center text-md">
+                     {% for option in room.room_options %}
+                     <li class="nav-item">
+                        {{option}}
+                     </li>
+                     {% endfor %}
+                  </ul>
+               </div>
+   
+               <div class="d-flex align-items-center justify-content-between mt-5">
+                  <h2 class="font-inter font-bold m-0 p-0">
+                     ${{room.price}}
+                     <span class="text-md text-secondary font-normal">/day</span>
+                  </h2>
+                  <a href="{% url 'room_details' room.slug %}" class="btn btn-darkblue text-sm font-medium">
+                     Select Room
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   {% endfor %}
+
+   {% else %}
+   
+      <small class="font-medium text-center text-danger">No items matched your search</small>
+
+   {% endif %}
+   
+</div>
+
+
+<br><br><br><br><br>
+{% endblock content %}

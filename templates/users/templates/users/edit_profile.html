@@ -1,0 +1,148 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Edit Profile ({{ request.user.username }}) {% endblock title %}
+{% block style %}
+{% endblock style %}
+
+{% block content %}
+
+<br>
+
+<div class="col-11 col-md-10 col-lg-8 col-xl-6 mx-auto my-5 border my-shadow-lg p-4">
+   <div class="mb-4">
+      <h1 class="m-0 p-0 font-semibold">Edit Profile</h1>
+      <small class="m-0 p-0">Update your basic info</small>
+   </div>
+
+   <form class="" action="{% url 'users:edit_profile' %}" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+
+      <fieldset class="mb-3">
+         <div class="row d-flex justify-content-between">
+            <!-- Avatar -->
+            <div class="col-sm-12 col-md-auto d-flex align-items-center gap-3">
+               <div class="avatar avatar-xxl ">
+
+                  {{edit_profile_form.profile_picture}}
+
+                  {% if request.user.profile_picture %}
+                  <img class="avatar-img img-fluid rounded-circle border border-white border-3" id="profile-output"
+                     src="{{request.user.profile_picture.url}}" width="120" height="120" style="object-fit: cover;"
+                     alt="User Avatar">
+                  {% else %}
+                  <img class="avatar-img img-fluid rounded-circle border border-white border-3" id="profile-output"
+                     src="{% static 'img/custom.jpg' %}" width="120" height="120" style="object-fit: cover;"
+                     alt="User Avatar">
+                  {% endif %}
+               </div>
+
+               <label for="profile_picture" class=" refresh-icon btn btn-darkblue text-sm cursor-pointer">
+                  Change
+               </label>
+            </div>
+         </div>
+      </fieldset>
+
+      <div class="row row-cols-1 row-cols-md-2 gy-3 mb-5">
+         <fieldset class="">
+            <label for="username" class="form-label font-inter text-md">
+               Username <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_profile_form.username}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="email" class="form-label font-inter text-md">
+               Email address <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_profile_form.email}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="first_name" class="form-label font-inter text-md">
+               First name <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_profile_form.first_name}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="last_name" class="form-label font-inter text-md">
+               Last name <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_profile_form.last_name}}
+         </fieldset>
+
+         <fieldset class="w-100">
+            <label for="bio" class="form-label font-inter text-md">
+               Bio
+            </label>
+
+            {{edit_profile_form.bio}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="bio" class="form-label font-inter text-md">
+               Date of Birth <span class="text-danger font-bold">*</span>
+            </label>
+
+            {{edit_profile_form.date_of_birth}}
+         </fieldset>
+
+         <fieldset class="mt-3">
+            <label for="gender" class="font-inter">
+               Select Gender <span class="text-danger font-bold">*</span>
+            </label>
+            <div class="mt-2">
+               {{edit_profile_form.gender}}
+            </div>
+         </fieldset>
+
+
+         <fieldset class="">
+            <label for="mobile_no" class="form-label font-inter text-md">
+               Mobile number
+            </label>
+         
+            {{edit_profile_form.mobile_no}}
+         </fieldset>
+
+         <fieldset class="">
+            <label for="city" class="form-label font-inter text-md">
+               City
+            </label>
+         
+            {{edit_profile_form.city}}
+         </fieldset>
+
+         <fieldset class="w-100">
+            <label for="address" class="form-label font-inter text-md">
+               Address
+            </label>
+         
+            {{edit_profile_form.address}}
+         </fieldset>
+         
+      </div>
+
+      <div class="d-flex justify-content-end">
+         <button type="submit" class="btn btn-darkblue text-md ">Save Changes</button>
+      </div>
+   </form>
+</div>
+
+<br><br><br><br><br>
+
+<script>
+
+   var loadFile = function (event) {
+      var profile_image = document.getElementById('profile-output');
+      profile_image.src = URL.createObjectURL(event.target.files[0]);
+   };
+
+</script>
+
+{% endblock %}

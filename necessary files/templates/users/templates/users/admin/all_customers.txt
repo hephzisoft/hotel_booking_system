@@ -1,0 +1,85 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %} Customers ({{ request.user.username }}) {% endblock title %}
+{% block content %}
+
+
+<div class="container my-5">
+   <h2 class="font-semibold">Registered Customers</h2>
+
+
+   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 g-lg-3 mt-4">
+
+      {% for user in all_customers %}
+
+      <div class="col">
+         <div class="p-3 border bg-light rounded-xl text-center">
+
+            <div class="d-flex justify-content-center mb-3">
+               <div class="avatar avatar-xl">
+                  {% if user.profile_picture %}
+                  <img class="avatar-img img-fluid rounded-circle border border-white border-3" id="profile-output"
+                     src="{{user.profile_picture.url}}" width="120" height="120" style="object-fit: cover;"
+                     alt="User Avatar">
+                  {% else %}
+                  <img class="avatar-img img-fluid rounded-circle border border-white border-3" id="profile-output"
+                     src="{% static 'img/custom.jpg' %}" width="120" height="120" style="object-fit: cover;"
+                     alt="User Avatar">
+                  {% endif %}
+               </div>
+            </div>
+
+            <h5 class="font-inter m-0">
+               {% if user.get_full_name %}
+               {{user.get_full_name}}
+               {% else %}
+               Customer's name
+               {% endif %}
+            </h5>
+            <small class="text-secondary d-block text-sm">{{ user.email }}</small>
+
+            <div class="d-flex align-items-center justify-content-between mt-4 mb-3">
+               <p class="text-sm text-black-50 d-inline-flex align-items-center gap-1 font-medium m-0 p-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" width="18" height="18">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                     <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
+                  
+                  {% if user.city %}
+                  {{user.city}}
+                  {% else %}
+                  {City}
+                  {% endif %}
+               </p>
+
+               <p class="text-sm text-black-50 d-inline-flex align-items-center gap-1 font-medium m-0 p-0">
+                  
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person"
+                     viewBox="0 0 16 16">
+                     <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+                  </svg>                  
+
+                  {% if user.gender %}
+                  {{user.gender}}
+                  {% else %}
+                  {Gender}
+                  {% endif %}
+               </p>
+
+
+            </div>
+
+         </div>
+      </div>
+
+      {% endfor %}
+
+   </div>
+
+</div>
+
+
+{% endblock content %}
